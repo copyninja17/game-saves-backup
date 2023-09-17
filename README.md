@@ -9,7 +9,7 @@ A simple python script to backup those save files and never lose your precious p
 - Add your games to the ```games_list.txt``` in following pattern:\
 ```"game_name">"game_path"```
 - Configure your backup folder's path and games list path in ```settings.conf```
-- Run the script by running ```game-saves-backup.py``` or get the latest windows executable from Releases
+- Run the script by running ```game-saves-backup.py``` or get the latest windows executable from [Releases](https://github.com/copyninja17/game-saves-backup/releases/tag/latest)
 - Alternatively you can compile your own executable by running the following command:
 ```powershell
 pip install pyinstaller
@@ -23,4 +23,4 @@ pyinstaller --onefile \path\to\game-saves-backup.py
 - Single quotes present in game's name are okay (Example: Marvel's Spiderman)
 
 ## Tips
-- You can use Windows Task Scheduler to run this script periodically.
+- You can use [Windows Task Scheduler](https://www.thecodebuzz.com/schedule-run-exe-console-application-windows-task-scheduler/) to run this script periodically.
