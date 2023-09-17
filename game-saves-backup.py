@@ -50,22 +50,28 @@ try:
                     BACKUP_LOCATION = BACKUP_LOCATION[1:-1]
                     
 except Exception as e:
-    logging.error("Error in paths in settings.conf")
+    logging.error(f"Error in paths in settings.conf: {e}")
     exit(1)
 
 
 # read games list
-with open (SAVES_LIST_PATH, 'r+') as f:
-    games_list = f.read().split('\n')
-    games_list = [ {'name':i.split('>')[0], 'path':i.split('>')[1]} for i in games_list ]
-
+try:
+    with open (SAVES_LIST_PATH, 'r+') as f:
+        games_list = f.read().split('\n')
+        games_list = [ {'name':i.split('>')[0], 'path':i.split('>')[1]} for i in games_list ]
+except:
+    logging.error(f"Error in paths in games_list.txt: {e}")
+    exit(1)
 
 # backup saves
 for game in games_list:
-    if game['name'][0] == game['name'][-1] and game['name'][0] in ['\"', "\'"]:
-        game['name'] = game['name'][1:-1]
-    if game['path'][0] == game['path'][-1] and game['path'][0] in ['\"', "\'"]:
-        game['path'] = game['path'][1:-1]
+    try:
+        if game['name'][0] == game['name'][-1] and game['name'][0] in ['\"', "\'"]:
+            game['name'] = game['name'][1:-1]
+        if game['path'][0] == game['path'][-1] and game['path'][0] in ['\"', "\'"]:
+            game['path'] = game['path'][1:-1]
+    except Exception as e:
+        logging.error(str(e))
 
     try:
         shutil.rmtree(f"{BACKUP_LOCATION}\{game['name']}\old\\")
