@@ -10,6 +10,7 @@ __pycache__/
 rough/
 logs/
 *.exe
+*.zip
 backups/
 
 # Distribution / packaging
