@@ -29,8 +29,8 @@ logging.basicConfig(filename=logname,
 
 # Variables
 
-SAVES_LIST_PATH = 'games_list.txt'
-BACKUP_LOCATION = 'backups'
+SAVES_LIST_PATH = config.SAVES_LIST_PATH
+BACKUP_LOCATION = config.BACKUP_LOCATION
 
 with open (SAVES_LIST_PATH, 'r+') as f:
     games_list = f.read().split('\n')
