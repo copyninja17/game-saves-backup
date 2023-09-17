@@ -1,0 +1,4 @@
+"spiderman">"C:\Users\immoh\OneDrive\Documents\Marvel's Spider-Man Remastered"
+"cities_skylines">"C:\Users\immoh\AppData\Local\Colossal Order\Cities_Skylines"
+"horizon_zero_dawn">"C:\Users\immoh\OneDrive\Documents\Horizon Zero Dawn"
+"elden_ring">"C:\Users\immoh\AppData\Roaming\EldenRing\76561198815845142"

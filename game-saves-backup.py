@@ -1,11 +1,10 @@
 import os
 import logging
 import shutil
-import config
 from datetime import datetime
 from pathlib import Path as PATH
 
-
+# logging function
 try:
     os.mkdir(f"{PATH(__file__).parent.absolute()}/logs")
 except:
@@ -27,16 +26,47 @@ logging.basicConfig(filename=logname,
                     style='{')
 
 
-# Variables
+# initialize variables
+SAVES_LIST_PATH = 'games_list.txt'
+BACKUP_LOCATION = 'backups'
 
-SAVES_LIST_PATH = config.SAVES_LIST_PATH
-BACKUP_LOCATION = config.BACKUP_LOCATION
 
+# read settings from settings.conf
+try:
+    with open ('settings.conf', 'r+') as f:
+        settings = f.read().split('\n')
+        for option in settings:
+            option_name = option.split('>')[0]
+            option_path = option.split('>')[1]
+
+            if option_name == 'SAVES_LIST_PATH' and option_path != '':
+                SAVES_LIST_PATH = option_path
+                if SAVES_LIST_PATH[0] == SAVES_LIST_PATH[-1] and SAVES_LIST_PATH[0] in ['\"', "\'"]:
+                    SAVES_LIST_PATH = SAVES_LIST_PATH[1:-1]
+
+            if option_name == 'BACKUP_LOCATION' and option_path != '':
+                BACKUP_LOCATION = option_path
+                if BACKUP_LOCATION[0] == BACKUP_LOCATION[-1] and BACKUP_LOCATION[0] in ['\"', "\'"]:
+                    BACKUP_LOCATION = BACKUP_LOCATION[1:-1]
+                    
+except Exception as e:
+    logging.error("Error in paths in settings.conf")
+    exit(1)
+
+
+# read games list
 with open (SAVES_LIST_PATH, 'r+') as f:
     games_list = f.read().split('\n')
     games_list = [ {'name':i.split('>')[0], 'path':i.split('>')[1]} for i in games_list ]
 
+
+# backup saves
 for game in games_list:
+    if game['name'][0] == game['name'][-1] and game['name'][0] in ['\"', "\'"]:
+        game['name'] = game['name'][1:-1]
+    if game['path'][0] == game['path'][-1] and game['path'][0] in ['\"', "\'"]:
+        game['path'] = game['path'][1:-1]
+
     try:
         shutil.rmtree(f"{BACKUP_LOCATION}\{game['name']}\old")
     except Exception as e:
@@ -52,3 +82,5 @@ for game in games_list:
         logging.info(f"Backed up {game['name']}")
     except Exception as e:
         logging.error(str(e))
+
+logging.info("Session ended")

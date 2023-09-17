@@ -1,2 +1,0 @@
-SAVES_LIST_PATH = 'games_list.txt'
-BACKUP_LOCATION = 'backups'
