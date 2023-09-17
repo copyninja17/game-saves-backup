@@ -8,6 +8,13 @@ A simple python script to backup those save files and never lose your precious p
 ## Usage
 - Add your games to the ```games_list.txt``` in following pattern:\
 ```"game_name">"game_path"```
+```
+Example
+
+"spiderman">"C:\Users\copyninja17\OneDrive\Documents\Marvel's SpiderMan Remastered"
+"cities_skylines">"C:\Users\copyninja17\AppData\Local\Colossal Order\Cities_Skylines"
+"elden_ring">"C:\Users\copyninja17\AppData\Roaming\EldenRing"
+```
 - Configure your backup folder's path and games list path in ```settings.conf```
 - Run the script by running ```game-saves-backup.py``` or get the latest windows executable from [Releases](https://github.com/copyninja17/game-saves-backup/releases/tag/latest)
 - Alternatively you can compile your own executable by running the following command:
