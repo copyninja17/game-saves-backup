@@ -9,6 +9,8 @@ __pycache__/
 # Personal
 rough/
 logs/
+*.exe
+backups/
 
 # Distribution / packaging
 .Python
