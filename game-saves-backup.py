@@ -68,17 +68,17 @@ for game in games_list:
         game['path'] = game['path'][1:-1]
 
     try:
-        shutil.rmtree(f"{BACKUP_LOCATION}\{game['name']}\old")
+        shutil.rmtree(f"{BACKUP_LOCATION}\{game['name']}\old\\")
     except Exception as e:
         logging.error(str(e))
 
     try:
-        shutil.move(f"{BACKUP_LOCATION}\{game['name']}\latest", f"{BACKUP_LOCATION}\{game['name']}\old")
+        shutil.move(f"{BACKUP_LOCATION}\{game['name']}\latest\\", f"{BACKUP_LOCATION}\{game['name']}\old\\")
     except Exception as e:
         logging.error(str(e))
 
     try:
-        shutil.copytree(game['path'], f"{BACKUP_LOCATION}\{game['name']}\latest")
+        shutil.copytree(game['path'], f"{BACKUP_LOCATION}\{game['name']}\latest\\")
         logging.info(f"Backed up {game['name']}")
     except Exception as e:
         logging.error(str(e))
